@@ -13,7 +13,7 @@ services:
     plan: free
     region: frankfurt
     healthCheckPath: /healthz
-    autoDeploy: false
+    autoDeploy: true
     envVars:
       - key: PORT
         value: 80

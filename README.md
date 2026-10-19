@@ -174,6 +174,45 @@ Chaque nouveau `git push` sur la branche `main` déclenchera automatiquement la 
 
 ---
 
+## ⚙️ CI/CD Automatique avec GitHub Actions
+
+Le fichier [`.github/workflows/deploy-render.yml`](.github/workflows/deploy-render.yml) automatise le pipeline complet à chaque `git push` sur `main` :
+
+```
+push → main
+   │
+   ├─ 🔨 Build Angular (production)
+   │         ↓
+   ├─ 🔍 SonarQube Analysis (non-bloquant)
+   │         ↓
+   └─ 🌐 Deploy to Render (via Deploy Hook)
+```
+
+### Configurer les Secrets GitHub
+
+Ajoutez ces secrets dans **Settings → Secrets and variables → Actions** de votre dépôt GitHub :
+
+| Secret | Description | Obligatoire |
+|--------|-------------|-------------|
+| `RENDER_DEPLOY_HOOK_URL` | URL du Deploy Hook Render (Dashboard → Service → Settings → Deploy Hook) | ✅ Oui |
+| `SONAR_TOKEN` | Token d'accès SonarQube | ⬜ Optionnel |
+| `SONAR_HOST_URL` | URL de votre serveur SonarQube | ⬜ Optionnel |
+
+### Obtenir le Deploy Hook Render
+
+1. Connectez-vous sur [dashboard.render.com](https://dashboard.render.com)
+2. Ouvrez votre service → **Settings**
+3. Faites défiler jusqu'à **"Deploy Hook"** → Copiez l'URL
+4. Collez-la dans GitHub Secrets sous le nom `RENDER_DEPLOY_HOOK_URL`
+
+### Déclenchement Manuel
+
+Le workflow peut aussi être déclenché manuellement depuis :
+**GitHub → Actions → 🚀 CI/CD → Render → Run workflow**
+
+---
+
+
 ## 🔍 Qualité de Code & Analyse SonarQube
 
 Le projet intègre une configuration complète **SonarQube** ([`sonar-project.properties`](file:///c:/Users/bachi/Desktop/Project/sonar-project.properties)) pour l'analyse statique du code TypeScript, l'application des Quality Gates et la détection précoce des vulnérabilités de sécurité et de la dette technique.
@@ -203,9 +242,8 @@ npm run sonar:down
 ```
 
 ### 4. Intégration Continue SonarQube
-L'analyse SonarQube est automatiquement déclenchée dans les 3 pipelines CI/CD du projet :
-- **GitHub Actions** : Job dédié `sonarqube-analysis` vérifiant le respect des règles de qualité sur chaque Pull Request et `push`.
-- **GitLab CI/CD** : Stage `test` avec conteneur `sonarsource/sonar-scanner-cli`.
-- **Jenkins** : Stage `🔍 Analyse Qualité SonarQube` avec rapport automatisé.
+L'analyse SonarQube est automatiquement déclenchée dans le pipeline CI/CD :
+- **GitHub Actions** : Job dédié `sonarqube` avec `continue-on-error: true` — l'analyse ne bloque jamais le déploiement.
+
 
 
