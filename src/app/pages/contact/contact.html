@@ -1,0 +1,155 @@
+<main class="contact-page">
+  <div class="container">
+    <!-- Header -->
+    <header class="page-header">
+      <span class="section-tag">Contact Direct</span>
+      <h1 class="page-title">Discutons de Vos Défis Techniques</h1>
+      <p class="page-subtitle">
+        À la recherche d'un Technical Lead ou d'un Développeur Full Stack Senior pour piloter vos projets Java, structurer vos architectures microservices Kafka ou concevoir des applications Angular performantes ?
+      </p>
+    </header>
+
+    <!-- Main Grid: Info Cards + Reactive Form -->
+    <div class="contact-layout-grid">
+      <!-- Left Column: Contact Methods & Socials -->
+      <div class="contact-details-col">
+        <!-- Direct Communication Card -->
+        <div class="details-card glass-card">
+          <h2 class="card-title">Canaux Directs</h2>
+          <p class="card-desc">Choisissez le moyen de communication qui vous convient le mieux.</p>
+
+          <div class="channel-list">
+            <!-- Email Item with Copy Button -->
+            <div class="channel-item">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="channel-content">
+                <span class="channel-label">Email Professionnel</span>
+                <span class="channel-value">{{ portfolioService.personalInfo().email }}</span>
+              </div>
+              <button class="btn btn-outline btn-sm copy-btn" (click)="copyEmail()" title="Copier l'adresse email">
+                @if (copiedEmail()) {
+                  <span class="copied-indicator">Copié !</span>
+                } @else {
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copier</span>
+                }
+              </button>
+            </div>
+
+            <!-- Phone Item -->
+            <div class="channel-item">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="channel-content">
+                <span class="channel-label">Téléphone / WhatsApp</span>
+                <span class="channel-value">{{ portfolioService.personalInfo().phone }}</span>
+              </div>
+            </div>
+
+            <!-- Location & Timezone -->
+            <div class="channel-item">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="channel-content">
+                <span class="channel-label">Localisation</span>
+                <span class="channel-value">Tunis, Tunisie &bull; Ouvert aux opportunités Remote</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Channels -->
+          <div class="social-block">
+            <span class="social-heading">Réseaux Professionnels</span>
+            <div class="social-buttons-grid">
+              <a [href]="portfolioService.personalInfo().linkedin" target="_blank" rel="noopener noreferrer" class="social-link-pill">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+
+              <a [href]="portfolioService.personalInfo().github" target="_blank" rel="noopener noreferrer" class="social-link-pill">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                <span>GitHub</span>
+              </a>
+
+              <a [href]="'mailto:' + portfolioService.personalInfo().email" class="social-link-pill">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Availability Note Card -->
+        <div class="availability-card glass-card">
+          <div class="avail-header">
+            <span class="pulse-dot"></span>
+            <strong>Statut de Disponibilité</strong>
+          </div>
+          <p>
+            À la recherche de rôles Tech Lead / Senior Full Stack Java orientés architecture et développement d'applications d'entreprise.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Reactive Contact Form -->
+      <div class="contact-form-col">
+        <app-contact-form></app-contact-form>
+      </div>
+    </div>
+
+    <!-- Frequently Asked Questions Accordion -->
+    <section class="faq-section">
+      <div class="section-header">
+        <span class="section-tag">Questions Fréquentes</span>
+        <h2 class="section-title">Foire Aux Questions (FAQ)</h2>
+        <p class="section-subtitle">Détails sur mon positionnement, mon approche méthodologique et ma disponibilité.</p>
+      </div>
+
+      <div class="faq-accordion-list">
+        @for (faq of portfolioService.faqs(); track faq.question; let idx = $index) {
+          <div class="faq-item glass-card" [class.open]="openFaqIndex() === idx">
+            <button
+              class="faq-trigger"
+              (click)="toggleFaq(idx)"
+              [attr.aria-expanded]="openFaqIndex() === idx"
+            >
+              <span class="faq-question">{{ faq.question }}</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-chevron">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            @if (openFaqIndex() === idx) {
+              <div class="faq-content">
+                <p>{{ faq.answer }}</p>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,177 @@
+<div class="contact-form-wrapper glass-card">
+  @if (contactService.lastSubmissionSuccess() === true) {
+    <!-- Success Feedback State -->
+    <div class="success-state">
+      <div class="success-icon-badge">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h3 class="success-title">Message Envoyé avec Succès !</h3>
+      <p class="success-desc">
+        Merci pour votre message. Je vous répondrai dans les plus brefs délais (généralement en moins de 24h).
+      </p>
+      <div class="success-actions">
+        <button class="btn btn-outline btn-sm" (click)="sendAnotherMessage()">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span>Envoyer un autre message</span>
+        </button>
+      </div>
+    </div>
+  } @else {
+    <!-- Active Form -->
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form-body" novalidate>
+      <div class="form-header">
+        <h3 class="form-title">Envoyer un Message Direct</h3>
+        <p class="form-subtitle">Remplissez le formulaire ci-dessous pour discuter d'une opportunité ou d'un projet.</p>
+      </div>
+
+      <!-- Row: Name & Email -->
+      <div class="form-grid-2">
+        <div class="form-group" [class.has-error]="(f['name'].touched || isSubmitted()) && f['name'].invalid">
+          <label for="contact-name" class="form-label">
+            Nom & Prénom <span class="required">*</span>
+          </label>
+          <div class="input-wrapper">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="input-icon">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <input
+              type="text"
+              id="contact-name"
+              formControlName="name"
+              placeholder="ex: Jean Dupont"
+              class="form-control"
+              autocomplete="name"
+            />
+          </div>
+          @if ((f['name'].touched || isSubmitted()) && f['name'].invalid) {
+            <span class="error-msg">
+              @if (f['name'].errors?.['required']) { Le nom est obligatoire. }
+              @if (f['name'].errors?.['minlength']) { Le nom doit contenir au moins 2 caractères. }
+            </span>
+          }
+        </div>
+
+        <div class="form-group" [class.has-error]="(f['email'].touched || isSubmitted()) && f['email'].invalid">
+          <label for="contact-email" class="form-label">
+            Adresse Email <span class="required">*</span>
+          </label>
+          <div class="input-wrapper">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="input-icon">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <input
+              type="email"
+              id="contact-email"
+              formControlName="email"
+              placeholder="votre.email@entreprise.com"
+              class="form-control"
+              autocomplete="email"
+            />
+          </div>
+          @if ((f['email'].touched || isSubmitted()) && f['email'].invalid) {
+            <span class="error-msg">
+              @if (f['email'].errors?.['required']) { L'adresse email est requise. }
+              @if (f['email'].errors?.['email']) { Format d'email invalide. }
+            </span>
+          }
+        </div>
+      </div>
+
+      <!-- Row: Subject & Category -->
+      <div class="form-grid-2">
+        <div class="form-group" [class.has-error]="(f['subject'].touched || isSubmitted()) && f['subject'].invalid">
+          <label for="contact-subject" class="form-label">
+            Objet <span class="required">*</span>
+          </label>
+          <div class="input-wrapper">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="input-icon">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <input
+              type="text"
+              id="contact-subject"
+              formControlName="subject"
+              placeholder="ex: Opportunité Tech Lead / Architecture Java"
+              class="form-control"
+            />
+          </div>
+          @if ((f['subject'].touched || isSubmitted()) && f['subject'].invalid) {
+            <span class="error-msg">L'objet doit contenir au moins 4 caractères.</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="contact-category" class="form-label">Catégorie</label>
+          <div class="input-wrapper select-wrapper">
+            <select id="contact-category" formControlName="category" class="form-control select-control">
+              <option value="Opportunité Recrutement">Opportunité de recrutement (Tech Lead / Senior)</option>
+              <option value="Mission de Conseil">Audit d'architecture / Conseil technique</option>
+              <option value="Projet Microservices / Kafka">Projet Microservices & Kafka</option>
+              <option value="Autre demande">Autre demande</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message Textarea -->
+      <div class="form-group" [class.has-error]="(f['message'].touched || isSubmitted()) && f['message'].invalid">
+        <div class="label-with-counter">
+          <label for="contact-message" class="form-label">
+            Votre Message <span class="required">*</span>
+          </label>
+          <span class="char-counter" [class.warn]="messageLength < 15">
+            {{ messageLength }}/1500 caractères (min 15)
+          </span>
+        </div>
+        <textarea
+          id="contact-message"
+          formControlName="message"
+          rows="5"
+          placeholder="Décrivez votre besoin, les technologies de votre projet, le contexte ou la fiche de poste..."
+          class="form-control textarea-control"
+        ></textarea>
+        @if ((f['message'].touched || isSubmitted()) && f['message'].invalid) {
+          <span class="error-msg">Veuillez rédiger au moins 15 caractères pour détailler votre demande.</span>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-submit-row">
+        <button
+          type="submit"
+          class="btn btn-primary submit-btn"
+          [disabled]="contactService.isSubmitting()"
+        >
+          @if (contactService.isSubmitting()) {
+            <span class="spinner"></span>
+            <span>Envoi du message en cours...</span>
+          } @else {
+            <span>Envoyer le Message</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          }
+        </button>
+
+        <span class="privacy-note">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Vos informations sont strictement confidentielles.
+        </span>
+      </div>
+    </form>
+  }
+</div>

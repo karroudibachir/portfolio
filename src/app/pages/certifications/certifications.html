@@ -1,0 +1,220 @@
+<main class="certifications-page">
+  <div class="container page-container">
+    <!-- Top Header -->
+    <header class="page-header">
+      <span class="section-tag">Diplômes &amp; Accréditations Vérifiés</span>
+      <h1 class="page-title">Certifications Professionnelles</h1>
+      <p class="page-subtitle">
+        19 accréditations obtenues auprès d'organismes de référence mondiale : Anthropic Claude Academy, IBM, Simplilearn, OneRoadmap, AWS et ScholarHat.
+      </p>
+
+      <!-- Profile Link Button -->
+      <div class="header-action">
+        <a [href]="portfolioService.personalInfo().linkedin" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+          <span>Consulter toutes les certifications sur LinkedIn</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="cert-toolbar glass-card">
+      <!-- Search Input -->
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="text"
+          placeholder="Rechercher par mot-clé (ex: Claude, Kafka, Kubernetes, SQL, Simplilearn...)"
+          [ngModel]="searchQuery()"
+          (ngModelChange)="searchQuery.set($event)"
+          class="search-input"
+          aria-label="Recherche de certifications"
+        />
+        @if (searchQuery()) {
+          <button class="clear-search-btn" (click)="searchQuery.set('')" aria-label="Effacer la recherche">
+            &times;
+          </button>
+        }
+      </div>
+
+      <!-- Categories Pills -->
+      <div class="category-filters" role="tablist">
+        @for (cat of categories; track cat) {
+          <button
+            class="cat-filter-btn"
+            [class.active]="selectedCategory() === cat"
+            (click)="setCategory(cat)"
+            role="tab"
+            [attr.aria-selected]="selectedCategory() === cat"
+          >
+            <span>{{ cat }}</span>
+            <span class="cat-count">{{ getCategoryCount(cat) }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Results Count -->
+    <div class="results-meta">
+      <span>
+        Affichage de <strong>{{ filteredCertifications().length }}</strong> certification{{ filteredCertifications().length > 1 ? 's' : '' }}
+        @if (selectedCategory() !== 'Tous') {
+          dans <strong>{{ selectedCategory() }}</strong>
+        }
+        @if (searchQuery()) {
+          correspondant à «&nbsp;{{ searchQuery() }}&nbsp;»
+        }
+      </span>
+    </div>
+
+    <!-- Certifications Grid -->
+    @if (filteredCertifications().length > 0) {
+      <div class="cert-grid">
+        @for (cert of filteredCertifications(); track cert.title + (cert.credentialId || '')) {
+          <div class="cert-card glass-card">
+            <!-- Header with Category & Issuer Badge -->
+            <div class="cert-header">
+              <div class="cert-issuer-group">
+                <div class="cert-icon-wrapper" [style.color]="cert.badgeColor" [style.border-color]="cert.badgeColor + '55'">
+                  @if (cert.category === 'IA & LLM') {
+                    <!-- AI Brain Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4z"></path>
+                      <path d="M19 12a7 7 0 0 1-7 7 7 7 0 0 1-7-7"></path>
+                    </svg>
+                  } @else if (cert.category === 'DevOps & Cloud') {
+                    <!-- Cloud/Container Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="2" width="20" height="8" rx="2"></rect>
+                      <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+                      <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                      <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                    </svg>
+                  } @else if (cert.category === 'Data & SQL') {
+                    <!-- Database Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                  } @else {
+                    <!-- Award Ribbon Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="8" r="7"></circle>
+                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                    </svg>
+                  }
+                </div>
+                <div>
+                  <span class="cert-issuer-name">{{ cert.issuer }}</span>
+                  <span class="cert-date">Émise en {{ cert.year }}</span>
+                </div>
+              </div>
+
+              @if (cert.category) {
+                <span class="badge badge-primary cert-cat-badge">{{ cert.category }}</span>
+              }
+            </div>
+
+            <!-- Title -->
+            <h3 class="cert-title">{{ cert.title }}</h3>
+
+            <!-- Credential ID & Validity -->
+            <div class="cert-credentials">
+              @if (cert.credentialId) {
+                <div class="cert-id-row">
+                  <span class="id-label">Identifiant :</span>
+                  <code class="id-code">{{ cert.credentialId }}</code>
+                </div>
+              }
+              @if (cert.expires) {
+                <span class="cert-expires">Expire le {{ cert.expires }}</span>
+              }
+            </div>
+
+            <!-- Associated Skills Pills -->
+            @if (cert.skills?.length) {
+              <div class="cert-skills-group">
+                <span class="skills-label">Compétences :</span>
+                <div class="skills-tags">
+                  @for (skill of cert.skills; track skill) {
+                    <span class="badge badge-secondary skill-tag">{{ skill }}</span>
+                  }
+                </div>
+              </div>
+            }
+
+            <!-- Card Footer Action -->
+            <div class="cert-card-footer">
+              @if (cert.verifyUrl) {
+                <a [href]="cert.verifyUrl" target="_blank" rel="noopener noreferrer" class="btn btn-sm" [class.btn-primary]="isPdf(cert)" [class.btn-outline]="!isPdf(cert)">
+                  @if (isPdf(cert)) {
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="12" y1="18" x2="12" y2="12"></line>
+                      <line x1="9" y1="15" x2="12" y2="18"></line>
+                      <line x1="15" y1="15" x2="12" y2="18"></line>
+                    </svg>
+                  } @else {
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  }
+                  <span>{{ getActionLabel(cert) }}</span>
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <!-- Empty State -->
+      <div class="empty-state glass-card">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <h3>Aucune certification trouvée</h3>
+        <p>Aucun résultat ne correspond à votre filtre actuel ou à votre recherche «&nbsp;{{ searchQuery() }}&nbsp;».</p>
+        <button class="btn btn-secondary btn-sm" (click)="selectedCategory.set('Tous'); searchQuery.set('')">
+          Réinitialiser tous les filtres
+        </button>
+      </div>
+    }
+
+    <!-- Bottom Navigation Section -->
+    <section class="section bottom-cta">
+      <div class="bottom-card glass-card">
+        <div class="bottom-text">
+          <h3 class="bottom-title">Intéressé par mon profil et mes compétences certifiées ?</h3>
+          <p class="bottom-desc">
+            Je suis disponible pour des opportunités de Technical Lead, Architecte ou Senior Full Stack Java.
+          </p>
+        </div>
+        <div class="bottom-actions">
+          <a routerLink="/contact" class="btn btn-primary">
+            <span>Discuter d'une opportunité</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a routerLink="/projects" class="btn btn-outline">
+            <span>Voir les 11 Projets Réalisés</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,81 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bachir-karroudi/portfolio:latest
+    container_name: bachir-portfolio
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8080}:80"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portfolio.rule=Host(`${DOMAIN:-localhost}`)"
+      - "traefik.http.routers.portfolio.entrypoints=web"
+    networks:
+      - portfolio-network
+
+  # -----------------------------------------------------------------
+  # SonarQube & Base PostgreSQL (Activés avec le profil: sonar)
+  # Commande : docker compose --profile sonar up -d
+  # -----------------------------------------------------------------
+  sonarqube:
+    image: sonarqube:lts-community
+    container_name: sonarqube
+    profiles:
+      - sonar
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    networks:
+      - portfolio-network
+    environment:
+      - SONAR_JDBC_USERNAME=sonar
+      - SONAR_JDBC_PASSWORD=sonar_secure_password
+      - SONAR_JDBC_URL=jdbc:postgresql://sonar-db:5432/sonar
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    depends_on:
+      sonar-db:
+        condition: service_healthy
+
+  sonar-db:
+    image: postgres:15-alpine
+    container_name: sonar-db
+    profiles:
+      - sonar
+    restart: unless-stopped
+    networks:
+      - portfolio-network
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar_secure_password
+      - POSTGRES_DB=sonar
+    volumes:
+      - sonar_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sonar"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  sonar_db_data:

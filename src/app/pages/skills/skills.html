@@ -1,0 +1,154 @@
+<main class="skills-page">
+  <div class="container page-container">
+    <!-- Top Header -->
+    <header class="page-header">
+      <span class="section-tag">Expertise & Maîtrise Technique</span>
+      <h1 class="page-title">Compétences & Stack Technologique</h1>
+      <p class="page-subtitle">
+        Plus de 6 ans d'ingénierie logicielle : écosystème Java/Spring Boot, architectures événementielles Kafka, frontend réactif Angular, pipelines DevOps et intelligence artificielle.
+      </p>
+    </header>
+
+    <!-- Key Stats Banner -->
+    <div class="skills-highlights-grid">
+      <div class="highlight-card glass-card">
+        <div class="highlight-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
+        </div>
+        <div class="highlight-info">
+          <span class="highlight-title">Backend & Microservices</span>
+          <span class="highlight-desc">Java 17, Spring Boot, Spring Security, REST APIs, Architecture Distribuée</span>
+        </div>
+      </div>
+
+      <div class="highlight-card glass-card">
+        <div class="highlight-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div class="highlight-info">
+          <span class="highlight-title">Event-Driven Architecture</span>
+          <span class="highlight-desc">Apache Kafka, Topics & Partitionnement, Consumer Groups, DLQ</span>
+        </div>
+      </div>
+
+      <div class="highlight-card glass-card">
+        <div class="highlight-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <div class="highlight-info">
+          <span class="highlight-title">Frontend Réactif & 3D</span>
+          <span class="highlight-desc">Angular v12+, TypeScript, RxJS & Signals, Visualisation 2D/3D</span>
+        </div>
+      </div>
+
+      <div class="highlight-card glass-card">
+        <div class="highlight-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="highlight-info">
+          <span class="highlight-title">DevOps & IA Appliquée</span>
+          <span class="highlight-desc">Docker, Kubernetes, Jenkins, GitLab CI/CD, Anthropic Claude, MCP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Skills Matrix -->
+    <section class="section skills-section">
+      <div class="section-header">
+        <span class="section-tag">Exploration Détaillée</span>
+        <h2 class="section-title">Matrice Interactive par Domaine</h2>
+        <p class="section-subtitle">Sélectionnez une catégorie pour inspecter les technologies maîtrisées et leur niveau d'expertise.</p>
+      </div>
+
+      <div class="skills-matrix-wrapper glass-card">
+        <!-- Category Tabs -->
+        <div class="matrix-tabs">
+          @for (cat of portfolioService.skillCategories(); track cat.name; let idx = $index) {
+            <button
+              class="matrix-tab-btn"
+              [class.active]="activeCategoryIndex() === idx"
+              (click)="selectCategory(idx)"
+            >
+              <span>{{ cat.name }}</span>
+            </button>
+          }
+        </div>
+
+        <!-- Active Category Skills Display -->
+        <div class="matrix-body">
+          <div class="category-meta">
+            <h3 class="cat-title">{{ activeCategory().name }}</h3>
+            <p class="cat-desc">{{ activeCategory().description }}</p>
+          </div>
+
+          <div class="skills-bars-grid">
+            @for (skill of activeCategory().skills; track skill.name) {
+              <div class="skill-meter-card">
+                <div class="skill-info">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <div class="skill-badge-group">
+                    <span class="badge badge-primary">{{ skill.badge }}</span>
+                    <span class="skill-pct">{{ skill.level }}%</span>
+                  </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-track" role="progressbar" [attr.aria-valuenow]="skill.level" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-fill" [style.width.%]="skill.level"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross Navigation CTAs -->
+    <section class="section cta-links-section">
+      <div class="cta-cards-grid">
+        <div class="cta-card glass-card">
+          <span class="cta-badge">11 Projets Réalisés</span>
+          <h3 class="cta-title">Découvrir les Architectures Projets</h3>
+          <p class="cta-text">
+            Explorez les réalisations d'entreprise QualiFour, Timsoft, NAZA Dev et ISE Menzah avec découpage par couches et flux de données.
+          </p>
+          <a routerLink="/projects" class="btn btn-primary btn-sm">
+            <span>Explorer les Projets &amp; Architecture</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <div class="cta-card glass-card">
+          <span class="cta-badge">19 Accréditations</span>
+          <h3 class="cta-title">Consulter les Certificats Officiels</h3>
+          <p class="cta-text">
+            Vérifiez l'ensemble des diplômes obtenus (Anthropic Claude, Simplilearn, OneRoadmap, IBM, Kubernetes, Docker, AWS).
+          </p>
+          <a routerLink="/certifications" class="btn btn-secondary btn-sm">
+            <span>Voir les 19 Certifications</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,465 @@
+<main class="home-page">
+  <!-- =================================================================
+       HERO SECTION
+       ================================================================= -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <!-- Availability Badge -->
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          <span>À l'écoute de rôles Tech Lead / Senior Full Stack Java</span>
+        </div>
+
+        <!-- Headline with Animated Title Rotator -->
+        <h1 class="hero-title">
+          Architecturer & délivrer des solutions d'entreprise comme
+          <span class="gradient-text hero-role">{{ currentRole }}</span>
+        </h1>
+
+        <!-- Bio Introduction -->
+        <p class="hero-bio">
+          {{ portfolioService.personalInfo().bio }}
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-actions">
+          <a routerLink="/projects" class="btn btn-primary">
+            <span>Découvrir les Réalisations</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <a [href]="portfolioService.personalInfo().linkedin" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span>Profil LinkedIn</span>
+          </a>
+
+          <button class="btn btn-secondary" (click)="downloadCV()" title="Télécharger le CV au format Markdown">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Télécharger mon CV</span>
+          </button>
+        </div>
+
+        <!-- Live Metrics Stats Row -->
+        <div class="hero-stats">
+          @for (stat of portfolioService.personalInfo().stats; track stat.label) {
+            <div class="stat-card glass-card">
+              <div class="stat-number">
+                <span>{{ stat.value }}</span><span class="stat-suffix">{{ stat.suffix }}</span>
+              </div>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Hero Visual / Tech Terminal Mockup -->
+      <div class="hero-visual">
+        <div class="visual-glow-sphere"></div>
+        <div class="code-terminal-card glass-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="terminal-title">BachirKarroudi.java</span>
+          </div>
+          <div class="terminal-code">
+            <p><span class="c-keyword">public record</span> <span class="c-var">TechLead</span>(&#123;</p>
+            <p class="indent-1"><span class="c-prop">String nom</span> = <span class="c-str">"Bachir Karroudi"</span>,</p>
+            <p class="indent-1"><span class="c-prop">String poste</span> = <span class="c-str">"Technical Lead & Senior Java"</span>,</p>
+            <p class="indent-1"><span class="c-prop">List&lt;String&gt; stack</span> = List.of(<span class="c-str">"Spring Boot"</span>, <span class="c-str">"Angular"</span>, <span class="c-str">"Kafka"</span>),</p>
+            <p class="indent-1"><span class="c-prop">String bdd</span> = <span class="c-str">"Oracle SQL & PL/SQL (+30%)"</span>,</p>
+            <p class="indent-1"><span class="c-prop">String devops</span> = <span class="c-str">"Docker, Jenkins, GitLab CI"</span>,</p>
+            <p class="indent-1"><span class="c-prop">boolean openToOpportunities</span> = <span class="c-bool">true</span></p>
+            <p>&#125;) &#123;&#125;</p>
+          </div>
+        </div>
+
+        <!-- Floating Badges -->
+        <div class="floating-badge badge-top-right glass-card">
+          <span class="fb-icon">⚡</span>
+          <div class="fb-text">
+            <strong>Apache Kafka</strong>
+            <small>Event-Driven & Asynchrone</small>
+          </div>
+        </div>
+
+        <div class="floating-badge badge-bottom-left glass-card">
+          <span class="fb-icon">🛡️</span>
+          <div class="fb-text">
+            <strong>TDD & Qualité</strong>
+            <small>JUnit, Mockito & SonarQube</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       CORE VALUE PILLARS / HIGHLIGHTS
+       ================================================================= -->
+  <section class="section pillars-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Piliers d'Expertise</span>
+        <h2 class="section-title">Architecture, Robustesse & Industrialisation</h2>
+        <p class="section-subtitle">Une approche rigoureuse pour concevoir des applications web d'entreprise pérennes et performantes.</p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card glass-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="pillar-title">Microservices & Apache Kafka</h3>
+          <p class="pillar-desc">
+            Conception d'architectures distribuées orientées événements avec Spring Kafka, découplage des briques métiers, partitionnement de topics et gestion résiliente des erreurs (DLQ).
+          </p>
+        </div>
+
+        <div class="pillar-card glass-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 class="pillar-title">Full Stack Spring Boot & Angular</h3>
+          <p class="pillar-desc">
+            Développement complet de bout en bout : backends Java (8/11/17) sécurisés avec Spring Security, APIs REST haute disponibilité et interfaces modernes et responsives en Angular (v12+).
+          </p>
+        </div>
+
+        <div class="pillar-card glass-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3 class="pillar-title">DevOps & Optimisation Oracle PL/SQL</h3>
+          <p class="pillar-desc">
+            Industrialisation continue (Docker, Jenkins, GitLab CI/CD), intégration de SonarQube et optimisation fine des schémas et requêtes Oracle (+30% de gain mesuré sur les temps de réponse).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       PROJECT SHOWCASE SECTION
+       ================================================================= -->
+  <section class="section projects-section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Réalisations & Projets</span>
+        <h2 class="section-title">Conçus pour Résoudre des Enjeux Métiers Réels</h2>
+        <p class="section-subtitle">Découvrez des plateformes d'entreprise stratégiques, architectures distribuées et pipelines automatisés.</p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-pills-row">
+        @for (category of categories; track category) {
+          <button
+            class="filter-pill"
+            [class.active]="selectedCategory() === category"
+            (click)="setCategory(category)"
+          >
+            {{ category }}
+          </button>
+        }
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid">
+        @for (project of filteredProjects; track project.id) {
+          <article class="project-card glass-card">
+            <!-- Visual Mockup Banner -->
+            <div class="project-banner" [style.background]="project.imageGradient" (click)="openProject(project)">
+              <div class="browser-bar">
+                <span class="b-dot"></span>
+                <span class="b-dot"></span>
+                <span class="b-dot"></span>
+                <span class="browser-url">app.enterprise/{{ project.id }}</span>
+              </div>
+              <div class="banner-body">
+                <span class="card-category-badge">{{ project.category }}</span>
+                <h3 class="banner-title">{{ project.title }}</h3>
+              </div>
+            </div>
+
+            <!-- Card Content -->
+            <div class="project-card-body">
+              <p class="project-desc">{{ project.description }}</p>
+
+              <!-- Metric Pill -->
+              @if (project.metrics) {
+                <div class="card-metric">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                  <span>{{ project.metrics }}</span>
+                </div>
+              }
+
+              <!-- Tech Stack Tags -->
+              <div class="project-tags">
+                @for (tech of project.techStack.slice(0, 4); track tech) {
+                  <span class="badge">{{ tech }}</span>
+                }
+                @if (project.techStack.length > 4) {
+                  <span class="badge">+{{ project.techStack.length - 4 }}</span>
+                }
+              </div>
+
+              <!-- Card Actions -->
+              <div class="project-card-actions">
+                <button class="btn btn-outline btn-sm full-flex" (click)="openProject(project)">
+                  <span>Étude d'Architecture</span>
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </button>
+
+                @if (project.liveUrl) {
+                  <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm btn-icon" title="Voir le profil / démo">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                }
+
+                @if (project.githubUrl) {
+                  <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-icon" title="Code source / profil">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                }
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+
+      <!-- View All Projects Button -->
+      <div class="view-all-projects-row">
+        <a routerLink="/projects" class="btn btn-outline">
+          <span>Consulter toutes les études de cas ({{ portfolioService.projects().length }})</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       WORK EXPERIENCE TIMELINE
+       ================================================================= -->
+  <section class="section experience-section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Parcours Professionnel</span>
+        <h2 class="section-title">Expériences en Entreprise</h2>
+        <p class="section-subtitle">Plus de 6 ans d'évolution continue, du développement Full Stack au pilotage technique (Tech Lead).</p>
+      </div>
+
+      <div class="timeline-container">
+        @for (item of portfolioService.experience(); track item.period) {
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="marker-dot"></span>
+              <span class="marker-line"></span>
+            </div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="role-title">{{ item.role }}</h3>
+                  <span class="company-name">{{ item.company }} &bull; {{ item.location }}</span>
+                </div>
+                <span class="period-badge">{{ item.period }}</span>
+              </div>
+
+              <p class="item-desc">{{ item.description }}</p>
+
+              <ul class="achievements-list">
+                @for (ach of item.achievements; track ach) {
+                  <li>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2.5">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>{{ ach }}</span>
+                  </li>
+                }
+              </ul>
+
+              <div class="timeline-tags">
+                @for (t of item.techStack; track t) {
+                  <span class="badge">{{ t }}</span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       CERTIFICATIONS & ACCRÉDITATIONS HIGHLIGHT
+       ================================================================= -->
+  <section class="section cert-preview-section" id="certifications">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Accréditations Professionnelles</span>
+        <h2 class="section-title">Certifications Validées (19 Diplômes)</h2>
+        <p class="section-subtitle">Anthropic Claude (IA & MCP), IBM, Simplilearn (Full Stack Java & Kafka), OneRoadmap, Kubernetes & DevOps.</p>
+      </div>
+
+      <div class="cert-preview-grid">
+        @for (cert of portfolioService.certifications().slice(0, 6); track cert.title + (cert.credentialId || '')) {
+          <div class="cert-mini-card glass-card">
+            <div class="cert-mini-top">
+              <span class="cert-mini-issuer">{{ cert.issuer }}</span>
+              <span class="badge badge-primary cert-mini-cat">{{ cert.category }}</span>
+            </div>
+            <h3 class="cert-mini-title">{{ cert.title }}</h3>
+            @if (cert.skills?.length) {
+              <div class="cert-mini-skills">
+                @for (skill of cert.skills.slice(0, 3); track skill) {
+                  <span class="badge badge-secondary">{{ skill }}</span>
+                }
+              </div>
+            }
+            <div class="cert-mini-action">
+              @if (cert.verifyUrl) {
+                <a [href]="cert.verifyUrl" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  <span>Afficher le diplôme</span>
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="view-all-projects-row" style="margin-top: 2.5rem;">
+        <a routerLink="/certifications" class="btn btn-primary">
+          <span>Consulter les 19 certifications & diplômes vérifiés</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       INTERACTIVE CONTACT SECTION
+       ================================================================= -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Prendre Contact</span>
+        <h2 class="section-title">Échangeons sur Vos Projets</h2>
+        <p class="section-subtitle">À la recherche d'un profil Tech Lead / Senior Java orienté architecture, microservices et qualité ?</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-sidebar">
+          <div class="contact-info-card glass-card">
+            <h3 class="card-heading">Coordonnées Directes</h3>
+            <p class="card-sub">N'hésitez pas à me joindre directement par téléphone, email ou sur LinkedIn.</p>
+
+            <div class="info-items">
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <span class="item-label">Email</span>
+                  <a [href]="'mailto:' + portfolioService.personalInfo().email" class="item-value">
+                    {{ portfolioService.personalInfo().email }}
+                  </a>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <span class="item-label">Téléphone</span>
+                  <span class="item-value">{{ portfolioService.personalInfo().phone }}</span>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <span class="item-label">Localisation</span>
+                  <span class="item-value">{{ portfolioService.personalInfo().location }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer-box">
+              <span class="status-indicator">
+                <span class="pulse-dot"></span>
+                <strong>Disponible pour opportunités</strong>
+              </span>
+              <p>Réponse garantie sous 24 heures.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form Component -->
+        <div class="contact-main">
+          <app-contact-form></app-contact-form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Details Modal Popup -->
+  @if (selectedProject()) {
+    <app-project-modal [project]="selectedProject()!" (close)="closeProjectModal()"></app-project-modal>
+  }
+</main>

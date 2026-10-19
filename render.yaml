@@ -1,0 +1,19 @@
+# ===================================================================
+# Render Blueprint — Portfolio Bachir Karroudi
+# ===================================================================
+# Déploiement automatique conteneurisé Docker sur Render (100% Gratuit)
+# ===================================================================
+
+services:
+  - type: web
+    name: bachir-karroudi-portfolio
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    region: frankfurt
+    healthCheckPath: /healthz
+    autoDeploy: false
+    envVars:
+      - key: PORT
+        value: 80
