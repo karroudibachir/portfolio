@@ -21,7 +21,7 @@ export class PortfolioService {
     location: 'Tunis, Tunisie (Disponible sur place & Remote)',
     email: 'bachir422018@gmail.com',
     phone: '+216 92 657 905',
-    github: 'https://github.com/bachir422018',
+    github: 'https://github.com/karroudibachir',
     linkedin: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
     twitter: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
     stats: [
@@ -291,7 +291,7 @@ export class PortfolioService {
       techStack: ['Java 17', 'Spring Boot', 'Apache Kafka', 'Angular', 'Visualisation 2D/3D', 'Docker', 'JUnit', 'Mockito'],
       metrics: 'Réduction de 40% du temps d’identification et de traitement des non-conformités',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%)',
       featured: true,
       architecture: {
@@ -333,7 +333,7 @@ export class PortfolioService {
       techStack: ['Java', 'Spring Boot', 'Apache Kafka', 'Angular', 'Geofencing GPS', 'PostgreSQL', 'Docker'],
       metrics: 'Supervision simultanée de centaines de véhicules avec latence GPS <1 seconde',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
       featured: true,
       architecture: {
@@ -373,7 +373,7 @@ export class PortfolioService {
       techStack: ['Angular', 'Spring Boot', 'Java', 'REST APIs', 'Spring Security', 'MySQL'],
       metrics: '+25% de productivité constatée sur les campagnes de téléprospection',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #312e81 0%, #4338ca 50%, #6366f1 100%)',
       featured: false,
       architecture: {
@@ -417,7 +417,7 @@ export class PortfolioService {
       techStack: ['Angular', 'Spring Boot', 'Oracle SQL', 'PL/SQL', 'SQL Developer', 'Spring Security', 'REST APIs'],
       metrics: 'Gain de 30% sur les temps de réponse applicatifs et zéro incident de paiement',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%)',
       featured: true,
       architecture: {
@@ -457,7 +457,7 @@ export class PortfolioService {
       techStack: ['Angular', 'Spring Boot', 'Java', 'Oracle SQL', 'REST APIs', 'Bootstrap'],
       metrics: 'Dématérialisation de plus de 30 000 dossiers d’abonnés par an',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #075985 100%)',
       featured: false,
       architecture: {
@@ -497,7 +497,7 @@ export class PortfolioService {
       techStack: ['Angular', 'Spring Boot', 'Java', 'REST APIs', 'Oracle Database', 'Bootstrap'],
       metrics: 'Amélioration de 35% de la vitesse de navigation et chargement du catalogue',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #7c2d12 0%, #9a3412 50%, #c2410c 100%)',
       featured: false,
       architecture: {
@@ -540,7 +540,7 @@ export class PortfolioService {
       techStack: ['Spring Boot', 'Angular', 'IoT Sensors', 'Docker', 'GitLab CI/CD', 'MySQL'],
       metrics: 'Économie d’eau estimée à plus de 30% grâce au pilotage automatisé',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%)',
       featured: true,
       architecture: {
@@ -580,7 +580,7 @@ export class PortfolioService {
       techStack: ['Angular', 'Spring Boot', 'Java', 'Chart.js', 'REST APIs', 'Bootstrap'],
       metrics: 'Utilisé par des centaines d’utilisateurs pour évaluer leur bilan carbone',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%)',
       featured: false,
       architecture: {
@@ -619,7 +619,7 @@ export class PortfolioService {
       techStack: ['Angular', 'Spring Boot', 'Java', 'JUnit', 'Mockito', 'REST APIs', 'MySQL'],
       metrics: 'Comparaison instantanée de plus de 15 formules d’assurance en <3 secondes',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%)',
       featured: false,
       architecture: {
@@ -659,7 +659,7 @@ export class PortfolioService {
       techStack: ['Angular', 'Spring Boot', 'Docker', 'GitLab CI/CD', 'MySQL', 'REST APIs'],
       metrics: 'Gestion fluide de dizaines de formations et des centaines d’apprenants',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #581c87 0%, #6b21a8 50%, #7e22ce 100%)',
       featured: false,
       architecture: {
@@ -705,7 +705,7 @@ export class PortfolioService {
       techStack: ['Angular', 'Spring Boot', 'Java', 'Mobile Sync', 'REST APIs', 'MySQL', 'Bootstrap', 'JUnit'],
       metrics: 'Extraction, synchronisation et consultation de plus de 50 000+ contacts téléphoniques',
       liveUrl: 'https://www.linkedin.com/in/bachir-karroudi-453392308/',
-      githubUrl: 'https://github.com/bachir422018',
+      githubUrl: 'https://github.com/karroudibachir',
       imageGradient: 'linear-gradient(135deg, #2e1065 0%, #3b0764 50%, #7e22ce 100%)',
       featured: true,
       architecture: {
