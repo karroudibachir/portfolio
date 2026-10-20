@@ -168,7 +168,7 @@ L'application est configurée pour un déploiement continu et automatisé sur **
 
 3. **Résultat** :
    Render compile l'image Docker multi-stage Nginx et déploie le portfolio en HTTPS sécurisé avec une URL publique du type :  
-   `https://bachir-karroudi-portfolio.onrender.com`
+   `https://portfolio-n890.onrender.com/`
 
 Chaque nouveau `git push` sur la branche `master` (ou `main`) déclenchera automatiquement la recompilation et la mise à jour sans coupure.
 
