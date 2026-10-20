@@ -150,7 +150,7 @@ L'application est configurée pour un déploiement continu et automatisé sur **
    ```bash
    git add .
    git commit -m "feat: portfolio configuré pour Render avec Docker"
-   git push origin main
+   git push origin master
    ```
 
 2. **Connectez votre dépôt à Render** :
@@ -170,7 +170,7 @@ L'application est configurée pour un déploiement continu et automatisé sur **
    Render compile l'image Docker multi-stage Nginx et déploie le portfolio en HTTPS sécurisé avec une URL publique du type :  
    `https://bachir-karroudi-portfolio.onrender.com`
 
-Chaque nouveau `git push` sur la branche `main` déclenchera automatiquement la recompilation et la mise à jour sans coupure.
+Chaque nouveau `git push` sur la branche `master` (ou `main`) déclenchera automatiquement la recompilation et la mise à jour sans coupure.
 
 ---
 
