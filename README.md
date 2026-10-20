@@ -149,7 +149,7 @@ L'application est configurée pour un déploiement continu et automatisé sur **
 1. **Poussez votre projet sur GitHub** :
    ```bash
    git add .
-   git commit -m "feat: portfolio configuré pour Render avec Docker et SonarQube"
+   git commit -m "feat: portfolio configuré pour Render avec Docker"
    git push origin main
    ```
 
@@ -183,20 +183,16 @@ push → main
    │
    ├─ 🔨 Build Angular (production)
    │         ↓
-   ├─ 🔍 SonarQube Analysis (non-bloquant)
-   │         ↓
    └─ 🌐 Deploy to Render (via Deploy Hook)
 ```
 
 ### Configurer les Secrets GitHub
 
-Ajoutez ces secrets dans **Settings → Secrets and variables → Actions** de votre dépôt GitHub :
+Ajoutez ce secret dans **Settings → Secrets and variables → Actions** de votre dépôt GitHub :
 
 | Secret | Description | Obligatoire |
 |--------|-------------|-------------|
 | `RENDER_DEPLOY_HOOK_URL` | URL du Deploy Hook Render (Dashboard → Service → Settings → Deploy Hook) | ✅ Oui |
-| `SONAR_TOKEN` | Token d'accès SonarQube | ⬜ Optionnel |
-| `SONAR_HOST_URL` | URL de votre serveur SonarQube | ⬜ Optionnel |
 
 ### Obtenir le Deploy Hook Render
 
@@ -210,40 +206,6 @@ Ajoutez ces secrets dans **Settings → Secrets and variables → Actions** de v
 Le workflow peut aussi être déclenché manuellement depuis :
 **GitHub → Actions → 🚀 CI/CD → Render → Run workflow**
 
----
-
-
-## 🔍 Qualité de Code & Analyse SonarQube
-
-Le projet intègre une configuration complète **SonarQube** ([`sonar-project.properties`](file:///c:/Users/bachi/Desktop/Project/sonar-project.properties)) pour l'analyse statique du code TypeScript, l'application des Quality Gates et la détection précoce des vulnérabilités de sécurité et de la dette technique.
-
-### 1. Démarrer SonarQube en Local (Docker)
-Pour lancer une instance locale complète de SonarQube LTS avec sa base PostgreSQL dédiée :
-```bash
-npm run sonar:up
-# ou : docker compose -f docker-compose.sonar.yml up -d
-```
-L'interface web SonarQube est accessible sur : **`http://localhost:9000`** *(identifiants par défaut : `admin` / `admin`)*.
-
-### 2. Lancer l'Analyse du Code
-Une fois SonarQube démarré, lancez le scanner depuis la racine du projet :
-```bash
-# Via le conteneur officiel sonar-scanner-cli
-npm run sonar:local
-
-# Ou via npx
-npm run sonar:scan
-```
-
-### 3. Arrêter l'Environnement SonarQube
-```bash
-npm run sonar:down
-# ou : docker compose -f docker-compose.sonar.yml down
-```
-
-### 4. Intégration Continue SonarQube
-L'analyse SonarQube est automatiquement déclenchée dans le pipeline CI/CD :
-- **GitHub Actions** : Job dédié `sonarqube` avec `continue-on-error: true` — l'analyse ne bloque jamais le déploiement.
 
 
 

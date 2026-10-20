@@ -13,11 +13,7 @@
     "docker:run": "docker run -d -p 8080:80 --name bachir-portfolio bachir-portfolio:latest",
     "docker:stop": "docker stop bachir-portfolio && docker rm bachir-portfolio",
     "docker:compose": "docker compose up -d --build",
-    "docker:compose:down": "docker compose down",
-    "sonar:up": "docker compose --profile sonar up -d",
-    "sonar:down": "docker compose --profile sonar down",
-    "sonar:scan": "npx sonarqube-scanner",
-    "sonar:local": "docker run --rm --network host -v ${PWD}:/usr/src sonarsource/sonar-scanner-cli -Dsonar.host.url=http://localhost:9000"
+    "docker:compose:down": "docker compose down"
   },
   "private": true,
   "packageManager": "npm@11.19.1",
